@@ -1,5 +1,5 @@
 {
-  "name": "node-api-rest-generator",
+  "name": "api-rest-generator",
   "version": "1.0.0-alpha",
   "description": "Generate an API REST automatically with only configure a sequelize model",
   "main": "src/index.js",
