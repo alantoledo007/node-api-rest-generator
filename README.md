@@ -115,3 +115,7 @@ Now, go to http://localhost:3000/api/users ;)
 ]
 
 ```
+
+## PAGINATION
+
+We use the [sequelize-paginate](https://www.npmjs.com/package/sequelize-paginate) package to resolve the paginations. 
