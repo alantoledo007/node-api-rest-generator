@@ -1,0 +1,23 @@
+{
+  "name": "node-api-rest-generator",
+  "version": "1.0.0-alpha",
+  "description": "Generate an API REST automatically with only configure a sequelize model",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alantoledo007/node-api-rest-generator.git"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "crud",
+    "generator",
+    "sequelize",
+    "model"
+  ],
+  "author": "Alan Toledo",
+  "license": "ISC"
+}
