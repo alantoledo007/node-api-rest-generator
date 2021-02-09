@@ -19,5 +19,9 @@
     "model"
   ],
   "author": "Alan Toledo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "sequelize-paginate": "^1.1.6"
+  }
 }
