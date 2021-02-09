@@ -18,7 +18,7 @@ yarn add api-rest-generator
 - Sequelize
 - Express
 
-## EXPAMPLE
+## EXAMPLE
 
 ``` javascript
 //api-rest-generator
