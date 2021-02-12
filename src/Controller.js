@@ -37,6 +37,7 @@ class Controller {
             }).status(200);
 
         }catch(reason) {
+            console.log(reason);
             return res.send({
                 message: "Internal server error",
             }).status(500);
@@ -63,6 +64,7 @@ class Controller {
                     errors: reason.errors
                 }).status(422);
             }
+            console.log(reason);
             return res.send({
                 message: "Internal server error",
             }).status(500);
@@ -107,7 +109,8 @@ class Controller {
                 resource: this.model.name,
                 data:model
             }).status(200);
-        }catch(reaseon) {
+        }catch(reason) {
+            console.log(reason);
             return res.send({
                 message: "Internal server error",
             }).status(500);
@@ -137,6 +140,7 @@ class Controller {
                     errors: reason.errors
                 }).status(422);
             }
+            console.log(reason);
             return res.send({
                 message: "Internal server error",
             }).status(500);
@@ -161,7 +165,13 @@ class Controller {
             }).status(404);
         }
 
+        if(typeof this.resource.beforeDestroy === 'function'){
+            model = await this.resource.beforeDestroy(model) || model;
+        }
         await model.destroy();
+        if(typeof this.resource.afterDestroy === 'function'){
+            model = await this.resource.afterDestroy(model) || model;
+        }
 
         return res.sendStatus(204);
     }

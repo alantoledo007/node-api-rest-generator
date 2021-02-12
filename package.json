@@ -1,7 +1,7 @@
 {
   "name": "api-rest-generator",
-  "version": "1.0.1-alpha",
-  "description": "Generate an API REST automatically with only configure a sequelize model",
+  "version": "1.0.0",
+  "description": "Generate a CRUD & an API REST automatically with only configure a sequelize model",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "sequelize-paginate": "^1.1.6"
   }
 }

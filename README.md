@@ -18,6 +18,15 @@ yarn add api-rest-generator
 - Sequelize
 - Express
 
+## FEATURES
+- Create multiple CRUD in seconds with the pagination solved.
+- You can disable pagination.
+- Create an API REST automatically.
+- Data validators (Sequelize).
+- Customizable (paths & methods).
+- Implement your middlewares on each path or method.
+- Not necessarily should create a CRUD. You define which methods to use and which not. (onlyMethods & exceptMethods).
+
 ## EXAMPLE
 
 ``` javascript
@@ -47,7 +56,17 @@ const resources = [
 
 //package options
 const config = {
-    basePath = '/api';
+    basePath: '/api',
+    middlewares: [],
+
+    /*
+        for example:
+            middleware: [foo(), bar()]
+
+        result:
+            router.use(middleware[0]);
+            router.use(middleware[1]);
+    */
 }
 
 const apigen = new ApiRestGenerator(resources, config);
@@ -96,21 +115,49 @@ Now, go to http://localhost:3000/api/users ;)
         withPagination: true,
 
         indexConfig: (req) => {} || {},
+        /*
+            Example for filters:
+
+            indexConfig: (req) => {
+                const {status} = req.query;
+
+                if(status) => {
+                    return {
+                        where: { status }
+                    }
+                }
+            }
+
+        */
         showConfig: (req) => {} || {},
 
-        beforeCreate: (model) => model,
-        beforeUpdate: (model) => model,
+        beforeCreate: (model) => model || null,
+        beforeUpdate: (model) => model || null,
+        beforeDestroy: (model) => model || null,
 
-        afterCreate: (model) => model,
-        afterUpdate: (model) => model,
+        afterCreate: (model) => model || null,
+        afterUpdate: (model) => model || null,
+        afterDestroy: (model) => model || null,
 
-        protection: (req, res, next) => next(), // for protect all methods
+        middlewares: [],
+        /*
+            for example:
+                middleware: [foo(), bar()]
 
-        indexProtection: [], // middeware array
-        showProtection: [],
-        createProtection: [],
-        updateProtection: [],
-        destroyProtection: []
+            result:
+                router.use(`${basePath}/${path}`,middleware[0]);
+                router.use(`${basePath}/${path}`,middleware[1]);
+        */
+
+        // middewares array
+        indexProtection: [] || "function", 
+        showProtection: [] || "function",
+        createProtection: [] || "function",
+        updateProtection: [] || "function",
+        destroyProtection: [] || "function"
+        /*
+            route.get('/path', methodProtection, (req,res) => ...)
+        */
     }
 ]
 
